@@ -1,10 +1,24 @@
-body{
-
-    background-image: url('https://pbs.twimg.com/media/FbBPK--WAAARYvn?format=png&name=small');
-
-}
-.titulo{
-color: rgb(255, 176, 29);
-text-align: center;
-
-}
+.container {
+    background-color: #4e5860!important;
+  }
+  
+  .btn {
+    background: #cf8f05ee!important;
+    border: none!important;
+  }
+  
+  .MuiTypography-h3, .MuiTypography-h5 {
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 600!important;
+  }
+  
+  .MuiTypography-h6 {
+    font-family: 'Source Sans Pro', sans-serif!important;
+    font-weight: 400!important;
+  }
+  
+  .MuiButton-root {
+    font-family: 'Source Sans Pro', sans-serif!important;
+    letter-spacing: 1px!important;
+  }
+  
