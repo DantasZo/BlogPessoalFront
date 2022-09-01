@@ -1,0 +1,22 @@
+.text-decorator-none {
+    text-decoration: none;
+  }
+  
+  .color-weight {
+    color: #ffffff!important;
+    font-weight: 'bold'!important;
+  }
+  
+  .imagem {
+    background-image: url('https://pbs.twimg.com/media/FbBPK--WAAARYvn?format=png&name=small');
+    background-repeat: 'no-repeat';
+    width: 100vh;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
+
+  body {
+    background-color: #4e5860;
+  
+    }
