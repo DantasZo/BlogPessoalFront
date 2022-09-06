@@ -1,10 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React from 'react';
-import './App.css';
-import Home from './paginas/home/Home';
-import Footer from './componentes/footer/Footer'
-import Navbar from "./componentes/navbar/Navbar";
+
+import Home from "./paginas/home/Home";
 import Login from "./paginas/login/Login";
+import Navbar from "./componentes/estaticos/navbar/Navbar";
+import Footer from "./componentes/estaticos/footer/footer";
+import CadastroUsuario from "./paginas/cadastroUsuario/CadastroUsuario";
+import ListaTema from "./componentes/temas/ListaTemas/ListaTema";
+import ListaPostagem from "./componentes/postagem/listapostagem/ListaPostagem";
+
+
+import "./App.css";
 
 function App() {
   return (
@@ -15,6 +20,9 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/cadastrousuario" element={<CadastroUsuario />} />
+          <Route path="/temas" element={<ListaTema />} />
+          <Route path="/posts" element={<ListaPostagem />} />
         </Routes>
       </div>
       <Footer />

@@ -1,0 +1,15 @@
+.imagem2 {
+  background-image: url(https://pbs.twimg.com/media/FbBPK--WAAARYvn?format=png&name=small);
+  background-repeat: 'no-repeat';
+  width: 100vh;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.btnCancelar{
+  margin-right: 20px !important;
+  background: #74849C !important;
+  border: none !important;
+  color: #F2F2F2 !important;
+}
