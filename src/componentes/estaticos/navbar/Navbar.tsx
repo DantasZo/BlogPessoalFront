@@ -1,9 +1,22 @@
-import { Box } from "@mui/material";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { Box } from '@mui/material';
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+
 import './Navbar.css';
 
 function Navbar() {
+
+  const [token, setToken] = useLocalStorage('token')
+  let navigate = useNavigate()
+
+  function goLogout() {
+    setToken('')
+    alert("Usuário deslogado")
+    navigate('/login')
+  }
+
   return (
     <>
       <AppBar position="static" style={{background: '#67727b', color: '#F2F2F2'}}>
@@ -36,11 +49,13 @@ function Navbar() {
               </Typography>
             </Box>
             <Link to="/login" className="text-decorator-none">
-            <Box mx={1} style={{ cursor: "pointer" }}>
-              <Typography variant="h6" color="primary" className="logout">
+            
+            <Box mx={1} style={{ cursor: "pointer" }} onClick={goLogout}>
+              <Typography variant="h6" color="inherit" className="logout">
                 logout
               </Typography>
-            </Box>
+              </Box>
+
             </Link>
           </Box>
         </Toolbar>
@@ -49,4 +64,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar
