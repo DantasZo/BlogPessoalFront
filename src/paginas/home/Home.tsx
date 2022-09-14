@@ -5,19 +5,35 @@ import { Grid, Button, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import ModalPostagem from "../../componentes/postagem/modalPostagem/ModalPostagem";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { useSelector } from 'react-redux';
 import { useEffect } from "react";
+import { TokenState } from '../../store/tokens/actions';
+import { toast } from "react-toastify";
 
 function Home() {
   let navigate = useNavigate();
-  const [token, setToken] = useLocalStorage("token");
+  
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado!");
-      navigate("/login");
+      toast.error('Usuário precisa estar logado', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: 'colored',
+        progress: undefined,
+      })
+        navigate("/login")
+
     }
-  }, [token]);
+}, [token]);
+
   return (
     <>
       <Grid

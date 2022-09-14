@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { login } from "../../services/Service";
-
+import { toast } from 'react-toastify'
 import UserLogin from "../../models/UserLogin";
 import "./Login.css";
 
@@ -36,11 +36,31 @@ function Login() {
   async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      await login(`/usuarios/logar`, userLogin, setToken);
+      await login(`/usuarios/logar`, userLogin, setToken)
+       toast.success('Usuário logado com sucesso', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: 'colored',
+        progress: undefined,
+      })
 
-      alert("Usuário logado com sucesso!");
+
+
     } catch (error) {
-      alert("Dados do usuário inconsistentes. Erro ao logar!");
+      toast.error('Dados do usuário incorretos', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: 'colored',
+        progress: undefined,
+      })
     }
   }
 

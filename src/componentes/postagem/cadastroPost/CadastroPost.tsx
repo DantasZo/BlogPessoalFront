@@ -1,33 +1,40 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import {
-  Container,
-  Typography,
-  TextField,
-  Button,
-  Select,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  FormHelperText,
-} from "@material-ui/core";
-import "./CadastroPost.css";
-import { useNavigate, useParams } from "react-router-dom";
-import Tema from "../../../models/Tema";
-import useLocalStorage from "react-use-localstorage";
-import Postagem from "../../../models/Postagem";
-import { busca, buscaId, post, put } from "../../../services/Service";
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { Container, Typography, TextField, Button, Select, InputLabel, MenuItem, FormControl, FormHelperText } from "@material-ui/core"
+import './CadastroPost.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import Tema from '../../../models/Tema';
+import Postagem from '../../../models/Postagem';
+import { busca, buscaId, post, put } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/actions';
+import { toast } from 'react-toastify'
 
 function CadastroPost() {
   let navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [temas, setTemas] = useState<Tema[]>([]);
-  const [token, setToken] = useLocalStorage("token");
+  const [temas, setTemas] = useState<Tema[]>([])
+
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado.");
-      navigate("/login");
+
+      toast.error('Usuário precisa estar logado', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: 'colored',
+        progress: undefined,
+      })
+      navigate("/login")
+
     }
+
   }, [token]);
 
   const [tema, setTema] = useState<Tema>({
@@ -83,21 +90,80 @@ function CadastroPost() {
     e.preventDefault();
 
     if (id !== undefined) {
-      put(`/postagens`, postagem, setPostagem, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      alert("Postagem atualizada com sucesso!");
-    } else {
-      post(`/postagens`, postagem, setPostagem, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      alert("Postagem cadastrada com sucesso!");
-    }
-    back();
+
+      // TRY: Tenta executar a atualização 
+      try {
+          await put(`/postagens`, postagem, setPostagem, {
+              headers: {
+                  'Authorization': token
+              }
+          })
+
+          toast.success('Postagem atualizada com sucesso', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'colored',
+              progress: undefined,
+            })
+
+          // CATCH: Caso tenha algum erro, pegue esse erro e mande uma msg para o usuário
+      } catch (error) {
+          console.log(`Error: ${error}`)
+          toast.warning('Erro, por favor verifique a quantidade minima de caracteres', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'colored',
+              progress: undefined,
+            })
+      }
+
+      // Se o ID for indefinido, tente Cadastrar
+  } else {
+
+      // TRY: Tenta executar o cadastro
+      try {
+          await post(`/postagens`, postagem, setPostagem, {
+              headers: {
+                  'Authorization': token
+              }
+          })
+
+          toast.success('Postagem cadastrada com sucesso', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'colored',
+              progress: undefined,
+            })
+
+          // CATCH: Caso tenha algum erro, pegue esse erro e mande uma msg para o usuário
+      } catch (error) {
+          console.log(`Error: ${error}`)
+          toast.warning('Erro, por favor verifique a quantidade minima de caracteres', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              theme: 'colored',
+              progress: undefined,
+            })
+      }
+  }
+
+  back();
   }
 
   function back() {

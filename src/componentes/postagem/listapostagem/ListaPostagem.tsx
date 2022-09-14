@@ -1,10 +1,53 @@
-import { Link } from 'react-router-dom';
-import { Box } from '@mui/material';
-import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
-
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core'
+import { Box } from '@mui/material'
+import './ListaPostagem.css';
+import Postagem from '../../../models/Postagem';
+import { busca } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/actions';
+import { toast } from 'react-toastify'
 import './ListaPostagem.css';
 
 function ListaPostagem() {
+
+  const [posts, setPosts] = useState<Postagem[]>([])
+  let navigate = useNavigate();
+
+  const token = useSelector<TokenState, TokenState['tokens']>(
+    (state) => state.tokens
+  )
+  useEffect(() => {
+    if (token == "") {
+      toast.error('Você precisa estar logado', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: 'colored',
+        progress: undefined,
+      })
+      navigate("/login")
+
+    }
+  }, [token])
+
+  async function getPost() {
+    await busca("/postagens", setPosts, {
+      headers: {
+        'Authorization': token
+      }
+    })
+  }
+
+  useEffect(() => {
+
+    getPost()
+
+  }, [posts.length])
 
   return (
     <>
