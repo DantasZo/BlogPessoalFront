@@ -9,8 +9,7 @@ import ListaTema from "./componentes/temas/ListaTemas/ListaTema";
 import ListaPostagem from "./componentes/postagem/listapostagem/ListaPostagem";
 
 import "./App.css";
-
-import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
 import CadastroPost from "./componentes/postagem/cadastroPost/CadastroPost";
 import CadastroTema from "./componentes/temas/cadastroTema/CadastroTema";
 import DeletarPostagem from "./componentes/postagem/deletarPostagem/DeletarPostagem";
