@@ -8,8 +8,6 @@ import CadastroUsuario from "./paginas/cadastroUsuario/CadastroUsuario";
 import ListaTema from "./componentes/temas/ListaTemas/ListaTema";
 import ListaPostagem from "./componentes/postagem/listapostagem/ListaPostagem";
 
-import "./App.css";
-import 'react-toastify/dist/ReactToastify.css';
 import CadastroPost from "./componentes/postagem/cadastroPost/CadastroPost";
 import CadastroTema from "./componentes/temas/cadastroTema/CadastroTema";
 import DeletarPostagem from "./componentes/postagem/deletarPostagem/DeletarPostagem";
@@ -18,6 +16,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { ToastContainer } from "react-toastify/dist/components/ToastContainer";
 
+import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
