@@ -13,8 +13,8 @@ import CadastroTema from "./componentes/temas/cadastroTema/CadastroTema";
 import DeletarPostagem from "./componentes/postagem/deletarPostagem/DeletarPostagem";
 import DeletarTema from "./componentes/temas/deletaTema/DeletarTema";
 import { Provider } from "react-redux";
-import store from "./store/store";
-import { ToastContainer } from 'react-toastify';
+import { store } from "./store/store";
+import { ToastContainer } from 'react-toastify'
 
 import "./App.css";
 import 'react-toastify/dist/ReactToastify.css';
