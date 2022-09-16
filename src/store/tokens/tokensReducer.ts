@@ -1,9 +1,19 @@
-export type Action = {
-    type: "ADD_TOKEN",
-    payload: string
+import { Action } from './actions';
+
+export interface TokenState {
+  tokens: string
 }
 
-export const addToken = (token: string): Action => ({
-    type: "ADD_TOKEN",
-    payload: token
-})
+const initialState = {
+  tokens: ""
+}
+
+export const tokenReducer = (state: TokenState = initialState, action: Action) => {
+  switch (action.type) {
+    case "ADD_TOKEN": {
+      return {tokens: action.payload}
+    }
+    default:
+      return state
+  }
+}

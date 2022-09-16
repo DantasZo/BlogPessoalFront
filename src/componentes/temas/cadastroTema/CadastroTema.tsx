@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import { buscaId, post, put } from '../../../services/Service';
 import { useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/actions';
+import { TokenState } from "../../../store/tokens/tokensReducer";
 import { toast } from 'react-toastify'
 
 function CadastroTema() {

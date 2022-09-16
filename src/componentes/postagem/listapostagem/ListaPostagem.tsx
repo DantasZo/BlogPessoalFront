@@ -6,7 +6,7 @@ import './ListaPostagem.css';
 import Postagem from '../../../models/Postagem';
 import { busca } from '../../../services/Service';
 import { useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/actions';
+import { TokenState } from "../../../store/tokens/tokensReducer";
 import { toast } from 'react-toastify'
 import './ListaPostagem.css';
 
