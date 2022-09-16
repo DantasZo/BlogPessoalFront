@@ -2,3 +2,11 @@
     color:#cf8f05ee;
     
 }
+.cursor {
+    cursor: pointer;
+    color: #cf8f05ee;
+  }
+  
+  .text-decorator-none {
+    text-decoration: none;
+  }

@@ -40,7 +40,7 @@ function Navbar() {
         <Toolbar variant="dense">
           <Box style={{ cursor: "default" }}>
             <Typography variant="h5" color="inherit">
-              Amanda Falcão //
+              Lucas Dantas //
             </Typography>
           </Box>
 
